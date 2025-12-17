@@ -676,6 +676,37 @@
         <section class="companies-section">
             <h2 class="section-title">Опыт работы</h2>
             <div class="carousel-container">
+                <script>
+    let currentSlide = 0;
+    const carousel = document.getElementById('carousel');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = document.querySelectorAll('.carousel-item').length;
+
+    function updateCarousel() {
+        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    }
+
+    function changeSlide(direction) {
+        currentSlide += direction;
+
+        if (currentSlide < 0) {
+            currentSlide = totalSlides - 1;
+        } else if (currentSlide >= totalSlides) {
+            currentSlide = 0;
+        }
+
+        updateCarousel();
+    }
+
+    function goToSlide(index) {
+        currentSlide = index;
+        updateCarousel();
+    }
+</script>
                 <button class="carousel-nav prev" onclick="changeSlide(-1)">‹</button>
                 <button class="carousel-nav next" onclick="changeSlide(1)">›</button>
                 
@@ -775,3 +806,5 @@
                     <div class="skill-card">Работа с AI</div>
                     <div class="skill-card">Маркетплейс</div>
                     <div class="skill-card">Excel</div>
+
+                    
